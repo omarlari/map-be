@@ -26,8 +26,8 @@ def map():
         'geometry': {
         'type': 'Point', 
         'coordinates': [
-            -122.47466532112183,
-             37.83810157315523
+            -122.41953280752264,
+             37.776889463715875
              ]},
     'properties':{
         'title': 'Omars House',

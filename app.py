@@ -123,7 +123,7 @@ def geoseed():
                                  'venue varchar NOT NULL,'
                                  'coordinates GEOGRAPHY,'
                                  'Longitude varchar(100),' 
-                                 'Latitude varchar(100),'
+                                 'Latitude varchar(100));'
                                  )
 
 # Insert data into the table

@@ -107,6 +107,50 @@ def seed():
     conn.close()
     return('success!')
 
+@app.route('/geo-seed')
+def geoseed():
+    conn = get_db_connection()
+    cur = conn.cursor()
+# Open a cursor to perform database operations
+        
+
+# Execute a command: this creates a new table
+    cur.execute('DROP TABLE IF EXISTS maps;')
+    cur.execute('CREATE TABLE maps (id serial PRIMARY KEY,'
+                                 'cluster boolean (150) NOT NULL,'
+                                 'event_count integer (50) NOT NULL,'
+                                 'title varchar NOT NULL,'
+                                 'venue varchar NOT NULL,'
+                                 'coordinates GEOGRAPHY,'
+                                 'Longitude varchar(100),' 
+                                 'Latitude varchar(100),'
+                                 )
+
+# Insert data into the table
+'''
+    cur.execute('INSERT INTO books (title, author, pages_num, review)'
+            'VALUES (%s, %s, %s, %s)',
+            ('A Tale of Two Cities',
+             'Charles Dickens',
+             489,
+             'A great classic!')
+            )
+
+
+    cur.execute('INSERT INTO books (title, author, pages_num, review)'
+            'VALUES (%s, %s, %s, %s)',
+            ('Anna Karenina',
+             'Leo Tolstoy',
+             864,
+             'Another great classic!')
+            )
+'''
+    conn.commit()
+
+    cur.close()
+    conn.close()
+    return('success!')
+
 @app.route('/post', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':

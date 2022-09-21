@@ -123,10 +123,9 @@ def geoseed():
                                  'venue varchar NOT NULL,'
                                  'coordinates GEOGRAPHY,'
                                  'Longitude varchar(100),' 
-                                 'Latitude varchar(100));'
+                                 'Latitude varchar(100),'
+                                 'date_added date DEFAULT CURRENT_TIMESTAMP);'
                                  )
-
-# Insert data into the table
 
     conn.commit()
 

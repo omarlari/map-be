@@ -107,25 +107,6 @@ def seed():
     conn.close()
     return('success!')
 
-@app.route('/geo-seed')
-def geoseed():
-    conn = get_db_connection()
-    cur = conn.cursor()
-# Open a cursor to perform database operations
-        
-
-# Execute a command: this creates a new table
-    cur.execute('DROP TABLE IF EXISTS maps;')
-    cur.execute('CREATE TABLE maps (id serial PRIMARY KEY);')
-                                 
-                                 
-
-    conn.commit()
-
-    cur.close()
-    conn.close()
-    return('success!')
-
 @app.route('/post', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':

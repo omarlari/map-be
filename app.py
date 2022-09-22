@@ -126,7 +126,7 @@ def geoseed():
                                  )
     cur.execute('INSERT INTO maps (coordinates, cluster, event_count, title, venue)'
             'VALUES (%s, %s, %s, %s, %s)',
-            ('(-122.40688636105475,37.802538382504466)',
+            ('-122.40688636105475,37.802538382504466',
              'FALSE',
              489,
              'North Beach',

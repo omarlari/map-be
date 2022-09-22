@@ -124,6 +124,15 @@ def geoseed():
                                  'venue varchar (150) NOT NULL,'
                                  'date_added date DEFAULT CURRENT_TIMESTAMP);'
                                  )
+    cur.execute('INSERT INTO maps (coordinates, cluster, event_count, title, venue)'
+            'VALUES (%s, %s, %s, %s, %s)',
+            ([-122.40688636105475,37.802538382504466],
+             'FALSE',
+             489,
+             'North Beach',
+             'Gigis')
+            )
+    
     conn.commit()
 
     cur.close()

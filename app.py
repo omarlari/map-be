@@ -107,6 +107,38 @@ def seed():
     conn.close()
     return('success!')
 
+@app.route('/read')
+def index():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM books;')
+    books = cur.fetchall()
+    cur.close()
+    conn.close()
+    return jsonify(books)
+
+@app.route('/geoseed')
+def geoseed():
+    conn = get_db_connection()
+    cur = conn.cursor()
+# Open a cursor to perform database operations
+        
+
+# Execute a command: this creates a new table
+    cur.execute('DROP TABLE IF EXISTS maps;')
+    cur.execute('CREATE TABLE maps (id serial PRIMARY KEY,'
+                                 'title varchar (150) NOT NULL,'
+                                 'author varchar (50) NOT NULL,'
+                                 'pages_num integer NOT NULL,'
+                                 'review text,'
+                                 'date_added date DEFAULT CURRENT_TIMESTAMP);'
+                                 )
+    conn.commit()
+
+    cur.close()
+    conn.close()
+    return('success!')
+
 @app.route('/post', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':

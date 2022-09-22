@@ -107,16 +107,6 @@ def seed():
     conn.close()
     return('success!')
 
-@app.route('/read')
-def index():
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute('SELECT * FROM books;')
-    books = cur.fetchall()
-    cur.close()
-    conn.close()
-    return jsonify(books)
-
 @app.route('/geoseed')
 def geoseed():
     conn = get_db_connection()
@@ -138,6 +128,16 @@ def geoseed():
     cur.close()
     conn.close()
     return('success!')
+
+@app.route('/read')
+def read():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM books;')
+    books = cur.fetchall()
+    cur.close()
+    conn.close()
+    return jsonify(books)
 
 @app.route('/post', methods=('GET', 'POST'))
 def create():

@@ -117,10 +117,11 @@ def geoseed():
 # Execute a command: this creates a new table
     cur.execute('DROP TABLE IF EXISTS maps;')
     cur.execute('CREATE TABLE maps (id serial PRIMARY KEY,'
+                                 'coordinates varchar (150) NOT NULL,'
+                                 'cluster boolean NOT NULL,'
+                                 'event_count integer NOT NULL,'
                                  'title varchar (150) NOT NULL,'
-                                 'author varchar (50) NOT NULL,'
-                                 'pages_num integer NOT NULL,'
-                                 'review text,'
+                                 'title venue (150) NOT NULL,'
                                  'date_added date DEFAULT CURRENT_TIMESTAMP);'
                                  )
     conn.commit()

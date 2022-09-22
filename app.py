@@ -121,7 +121,7 @@ def geoseed():
                                  'cluster boolean NOT NULL,'
                                  'event_count integer NOT NULL,'
                                  'title varchar (150) NOT NULL,'
-                                 'title venue (150) NOT NULL,'
+                                 'venue varchar (150) NOT NULL,'
                                  'date_added date DEFAULT CURRENT_TIMESTAMP);'
                                  )
     conn.commit()

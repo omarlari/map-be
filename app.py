@@ -30,7 +30,7 @@ def map():
              37.776889463715875
              ]},
     'properties':{
-        'title': 'Omars House',
+        'title': 'Shubha's House',
         'cluster': False,
         'venue': 'blackcat',
         'event_count': 10

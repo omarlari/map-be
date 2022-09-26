@@ -139,15 +139,15 @@ def geoseed():
     conn.close()
     return('success!')
 
-@app.route('/read')
-def read():
+@app.route('/georead')
+def georead():
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute('SELECT * FROM books;')
-    books = cur.fetchall()
+    cur.execute('SELECT * FROM maps;')
+    maps = cur.fetchall()
     cur.close()
     conn.close()
-    return jsonify(books)
+    return jsonify(maps)
 
 @app.route('/post', methods=('GET', 'POST'))
 def create():

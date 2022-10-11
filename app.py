@@ -79,6 +79,24 @@ def geoseed():
              'North Beach',
              'Gigis')
             )
+
+    cur.execute('INSERT INTO maps (coordinates, cluster, event_count, title, venue)'
+            'VALUES (%s, %s, %s, %s, %s)',
+            ('-122.4194,37.7749',
+             'FALSE',
+             999,
+             'City Center',
+             'Government')
+            )
+
+    cur.execute('INSERT INTO maps (coordinates, cluster, event_count, title, venue)'
+            'VALUES (%s, %s, %s, %s, %s)',
+            ('-122.4810,37.7924',
+             'FALSE',
+             101,
+             'Presidio',
+             'Park')
+            )
     
     conn.commit()
     cur.close()

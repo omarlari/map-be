@@ -88,7 +88,7 @@ def geoseed():
 def georead():
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute('SELECT json_agg(coordinates) FROM maps;')
+    cur.execute('SELECT json_agg(maps) FROM maps;')
     maps = cur.fetchall()
     cur.close()
     conn.close()

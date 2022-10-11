@@ -2,6 +2,7 @@ import os, logging
 from datetime import datetime
 import psycopg2
 from flask import Flask, jsonify, request, redirect, render_template, url_for
+from json import dumps
 
 app = Flask(__name__)
 app.logger.setLevel(logging.DEBUG)
@@ -107,7 +108,7 @@ def georead():
     maps = cur.fetchall()
     cur.close()
     conn.close()
-    r = jsonify(maps)
+    r = dumps(maps)
     r.headers.add('Access-Control-Allow-Origin', '*')
     return r
 

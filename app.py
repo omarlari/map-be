@@ -86,16 +86,31 @@ def geoseed():
 
 @app.route('/georead')
 def georead():
+    Sql = """
+    SELECT json_build_object(
+        'type', 'FeatureCollection',
+        'features', jsonb_agg(features.feature)
+    )
+    FROM (
+        SELECT jsonb_build_object(
+            'type', 'Feature',
+            'id', id,
+            'geometry', jsonb_build_object('coordinates', coordinates),
+            'properties', to_jsonb(inputs) - 'id' - 'coordinates'
+    ) AS feature
+    FROM (SELECT * from maps) inputs) features;
+    """
+    
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute('SELECT json_agg(maps) FROM maps;')
+    cur.execute(Sql)
     maps = cur.fetchall()
     cur.close()
     conn.close()
     # r = jsonify({'type': 'FeatureCollection', 'features': [maps]})
-    r = jsonify({'type': 'FeatureCollection', 'features': [maps]})
-    r.headers.add('Access-Control-Allow-Origin', '*')
-    return r
+    # r = jsonify({'type': 'FeatureCollection', 'features': [maps]})
+    # r.headers.add('Access-Control-Allow-Origin', '*')
+    return maps
 
      
 

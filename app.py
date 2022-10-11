@@ -2,7 +2,7 @@ import os, logging
 from datetime import datetime
 import psycopg2
 from flask import Flask, jsonify, request, redirect, render_template, url_for
-from json import dumps
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.logger.setLevel(logging.DEBUG)

@@ -88,15 +88,15 @@ def geoseed():
 @app.route('/georead')
 def georead():
     Sql = """
-    SELECT json_build_object(
+    SELECT jsonb_build_object(
         'type', 'FeatureCollection',
         'features', jsonb_agg(features.feature)
     )
     FROM (
         SELECT jsonb_build_object(
             'type', 'Feature',
-            'id', id,
-            'geometry', jsonb_build_object('coordinates', coordinates),
+            'geometry', jsonb_build_object('coordinates', json_build_array(coordinates[0], coordinates[1]),
+                'type', 'point'),
             'properties', to_jsonb(inputs) - 'id' - 'coordinates'
     ) AS feature
     FROM (SELECT * from maps) inputs) features;

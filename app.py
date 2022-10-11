@@ -54,65 +54,11 @@ def get_db_connection():
                             password=os.environ['PGPASSWORD'])
     return conn
 
-
-@app.route('/read')
-def index():
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute('SELECT * FROM books;')
-    books = cur.fetchall()
-    cur.close()
-    conn.close()
-    return jsonify(books)
-
-@app.route('/seed')
-def seed():
-    conn = get_db_connection()
-    cur = conn.cursor()
-# Open a cursor to perform database operations
-        
-
-# Execute a command: this creates a new table
-    cur.execute('DROP TABLE IF EXISTS books;')
-    cur.execute('CREATE TABLE books (id serial PRIMARY KEY,'
-                                 'title varchar (150) NOT NULL,'
-                                 'author varchar (50) NOT NULL,'
-                                 'pages_num integer NOT NULL,'
-                                 'review text,'
-                                 'date_added date DEFAULT CURRENT_TIMESTAMP);'
-                                 )
-
-# Insert data into the table
-
-    cur.execute('INSERT INTO books (title, author, pages_num, review)'
-            'VALUES (%s, %s, %s, %s)',
-            ('A Tale of Two Cities',
-             'Charles Dickens',
-             489,
-             'A great classic!')
-            )
-
-
-    cur.execute('INSERT INTO books (title, author, pages_num, review)'
-            'VALUES (%s, %s, %s, %s)',
-            ('Anna Karenina',
-             'Leo Tolstoy',
-             864,
-             'Another great classic!')
-            )
-
-    conn.commit()
-
-    cur.close()
-    conn.close()
-    return('success!')
-
 @app.route('/geoseed')
+# Open a cursor to perform database operations
 def geoseed():
     conn = get_db_connection()
     cur = conn.cursor()
-# Open a cursor to perform database operations
-        
 
 # Execute a command: this creates a new table
     cur.execute('DROP TABLE IF EXISTS maps;')
@@ -134,7 +80,6 @@ def geoseed():
             )
     
     conn.commit()
-
     cur.close()
     conn.close()
     return('success!')
@@ -147,6 +92,7 @@ def georead():
     maps = cur.fetchall()
     cur.close()
     conn.close()
+    maps.headers.add('Access-Control-Allow-Origin', '*')
     return jsonify(maps)
 
 @app.route('/post', methods=('GET', 'POST'))

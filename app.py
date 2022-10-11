@@ -88,7 +88,7 @@ def geoseed():
 def georead():
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute('SELECT * FROM maps;')
+    cur.execute('SELECT coordinates FROM maps;')
     maps = cur.fetchall()
     cur.close()
     conn.close()

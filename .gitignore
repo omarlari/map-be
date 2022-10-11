@@ -14,10 +14,14 @@
 
 # production
 /build
+/bin
+/lib
+/include
 
 # misc
 .DS_Store
 *.pem
+*.cfg
 
 # debug
 npm-debug.log*

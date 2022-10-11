@@ -6,6 +6,7 @@ from json import dumps
 
 app = Flask(__name__)
 app.logger.setLevel(logging.DEBUG)
+CORS(app)
 
 @app.errorhandler(500)
 def general_app_error(e):
@@ -37,7 +38,7 @@ def map():
         'event_count': 10
     }
     }]})
-    r.headers.add('Access-Control-Allow-Origin', '*')
+    # r.headers.add('Access-Control-Allow-Origin', '*')
     return r
 
 @app.route('/healthz')

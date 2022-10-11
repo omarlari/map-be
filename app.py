@@ -92,8 +92,9 @@ def georead():
     maps = cur.fetchall()
     cur.close()
     conn.close()
-    maps.headers.add('Access-Control-Allow-Origin', '*')
-    return maps
+    r = jsonify(maps)
+    r.headers.add('Access-Control-Allow-Origin', '*')
+    return r
 
      
 

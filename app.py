@@ -109,7 +109,7 @@ def georead():
     cur.close()
     conn.close()
     r = dumps(maps)
-    r.headers.add('Access-Control-Allow-Origin', '*')
+    #r.headers.add('Access-Control-Allow-Origin', '*')
     return r
 
      

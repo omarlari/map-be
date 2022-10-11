@@ -115,7 +115,7 @@ def georead():
         SELECT jsonb_build_object(
             'type', 'Feature',
             'geometry', jsonb_build_object('coordinates', json_build_array(coordinates[0], coordinates[1]),
-                'type', 'point'),
+                'type', 'Point'),
             'properties', to_jsonb(inputs) - 'id' - 'coordinates'
     ) AS feature
     FROM (SELECT * from maps) inputs) features;

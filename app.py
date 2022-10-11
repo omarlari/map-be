@@ -88,11 +88,11 @@ def geoseed():
 def georead():
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute('SELECT json_aggs(coordinates) FROM maps;')
+    cur.execute('SELECT json_aggs(maps) FROM maps;')
     maps = cur.fetchall()
     cur.close()
     conn.close()
-    r = jsonify(maps)
+    r = maps
     r.headers.add('Access-Control-Allow-Origin', '*')
     return r
 

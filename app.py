@@ -92,9 +92,26 @@ def georead():
     maps = cur.fetchall()
     cur.close()
     conn.close()
-    r = jsonify(maps)
+    r = jsonify({'type':'FeatureCollection',
+    'features': [
+        {'type': 'Feature', 
+        'geometry': {
+        'type': 'Point', 
+        'coordinates': [
+            maps[0],
+            maps[1]
+             ]},
+    'properties':{
+        'title': "Shubha's House",
+        'cluster': False,
+        'venue': 'blackcat',
+        'event_count': 10
+    }
+    }]})
     r.headers.add('Access-Control-Allow-Origin', '*')
     return r
+
+     
 
 @app.route('/post', methods=('GET', 'POST'))
 def create():
